@@ -111,7 +111,6 @@ pantalla12 = loadImage ("cromañon 2.png");
 pantalla13 = loadImage ("don osvaldo.png");
 pantalla14 = loadImage ("pato cjs 2.png");
 pantalla15 = loadImage ("callejeros logo.jpg");
-pantalla = 12;
 }
 void draw() {
   background(0);
