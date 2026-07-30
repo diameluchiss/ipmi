@@ -1,597 +1,67 @@
 // Diamela Molteni, Comisión 3, TP 3 - Obra OP ART interactiva
-
-//MI IDEA PRINCIPAL EN LA INTERACCION ERA QUE ALGUNO DE LOS CUADRADOS CAMBIE DE COLOR, DECIDI ELEGIR LOS CUADRADOS GRISES PORQUE ERAN LOS MÁS NOTORIOS Y LOS QUE LE DABAN MÁS FORMA A LA IMAGEN.
-
+//trabajo 3 - recu en vacaciones de invierno - modificado.
+//cosas que fui modificando 1: simplifique enormemente los For que dibujaban las hileras de cuadrados grises, negros y blancos. Cambie ambos cuadraditos blancos por uno del mismo tamaño que los otros (70,70) y lo puse detras del gris, creando esa ilusion de 2 cuadrados, quedando asi mas prolijo y comodo
+// modificacion 2 - 23/7: reduje mas el codigo haciendo lo q me dijo el profe: un for de columnas con el for de filas dentro, generando asi que el mismo dibujo siga igual pero con un codigo mucho mas reducido y simplificado
+//modificacion 3: no usar arreglos, usar funcion random de manera que no incluya arreglos
+//modificacion 4: agregue una interaccion sin usar arreglos, la que cambia el color de los 18 cuadrados por colores random
+//modificacion 5: me di cuenta que mi interaccion seguia cambiando si clickeaba en la imagen asi que agregue dentro del mousePressed un if que hace que sea necesario clickear a partir del pixel 400, o sea del lado derecho de la imagen si o si para que funcione
 //LINK A MI VIDEO: https://youtu.be/yApUEkJ_a9M
+//variables
 PImage tp3;
-int cantcuadrados1 = 6; // cantidad de cuadrados negros
-int cantcuadrados2 = 7; // cantidad de cuadrados grises 
-float x = 500;
-float y = -10;
-color[] colorGris = new color[18];
-
-void setup (){
-  size (800,400);
-   tp3 = loadImage("obra24.png");
-   for (int i = 0; i < 18; i++) {
-  colorGris[i] = color(200);
+color blanco = color(255);
+color gris = color(200);
+color negro = color(0);
+void setup () {
+  size (800, 400);
+  tp3 = loadImage("obra24.png");
 }
-}
-
 void draw() {
   background(0);
-   image(tp3, 0,0,400,400);
-   //LINEA 1 COMPLETA!!!
-   
-   //CUADRADITOS GRISES linea 1
-   for (int fila = 0; fila < 6; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 500 + col * 100;
-    float y = -10 + fila * 70;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(colorGris[fila]); // gris que cambia de color al clickearlo 1
-    rect(0, 0, 60, 60);
-    popMatrix();
+  image(tp3, 0, 0, 400, 400);
+  //LINEA 1 COMPLETA!!! - for anidado para filas y columnas !!
+  for (int col = 0; col < 3; col++) { // int col = 0 significa q empieza la variable en 0; col < 3 es la condicion que se repite mientas col sea menor que 3; col++ aumenta col de uno en uno (esto aplica tambien al segundo for pero con otros valores).
+    float x = 475 + col * 125;   // separacion entre las columnas !! 
+    for (int fila = 0; fila < 6; fila++) {
+      // CUADRADOS BLANCOS
+     pushMatrix();
+      translate(x, -5 + fila * 70);
+      rotate(radians(45)); // con esto hago que los cuadrados giren 45 grados para que quede como en la imagen
+      fill(blanco);
+      rect(0, 0, 70, 70);
+      popMatrix();
+      
+      // CUADRADOS GRISES
+      pushMatrix();
+      translate(x, -40 + fila * 70);
+      rotate(radians(45)); // con esto hago que los cuadrados giren 45 grados para que quede como en la imagen
+      fill(gris);
+      rect(0, 0, 70, 70);
+      popMatrix();
+      
+      // CUADRADOS NEGROS
+      pushMatrix();
+      translate(x + 65, -40 + fila * 70);
+      rotate(radians(45)); // con esto hago que los cuadrados giren 45 grados para que quede como en la imagen
+      fill(negro);
+      rect(0, 0, 70, 70);
+      popMatrix();
+    }
   }
 }
-//CUADRADO NEGRO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 550 + col * 52;
-    float y = 340;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 474 + col * 52;
-    float y = 188;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-}
-} 
- //CUADRADO BLANCO linea 1
-   for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 474 + col * 52;
-    float y = 258;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-
-//CUADRADO BLANCO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 474 + col * 52;
-    float y = 328;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-}
-}
-//CUADRADO BLANCO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 474 + col * 52;
-    float y = -22;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-}
-}
-//CUADRADO BLANCO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 474 + col * 52;
-    float y = 118;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-}
-}
-//CUADRADO BLANCO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 474 + col * 52;
-    float y = 398;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-}
-}
-//CUADRADO BLANCO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 474 + col * 52;
-    float y = 48;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-}
-}
-//CUADRADITO NEGRO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 550 + col * 52;
-    float y = 270;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 550 + col * 52;
-    float y = 200;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 550 + col * 52;
-    float y = 130;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 550 + col * 52;
-    float y = 60;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 1
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 550 + col * 52;
-    float y = -10;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//LINEA 2 COMPLETA!!!
-
- //CUADRADITOS GRISES linea 2
-   for (int fila = 0; fila < 6; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 600 + col * 100;
-    float y = -10 + fila * 70;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(colorGris[fila + 6]);   // gris que cambia de color al clickearlo 2
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 2 
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 574 + col * 52;
-    float y = -22;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 2 
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 574 + col * 52;
-    float y = 48;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 2 
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 574 + col * 52;
-    float y = 118;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 2
- for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 574 + col * 52;
-    float y = 188;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 2
-   for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 574 + col * 52;
-    float y = 258;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 2
- for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 574 + col * 52;
-    float y = 328;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO linea 2
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 650 + col * 52;
-    float y = 270;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO linea 2
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 650 + col * 52;
-    float y = 200;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO linea 2
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 650 + col * 52;
-    float y = 125;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO linea 2
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 650 + col * 52;
-    float y = 60;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO linea 2
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 650 + col * 52;
-    float y = -12;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 2
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 650 + col * 52;
-    float y = 342;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-// LINEA 3 COMPLETA!!!!
-
- //CUADRADITOS GRISES linea 3 
-   for (int fila = 0; fila < 6; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 700 + col * 100;
-    float y = -10 + fila * 70;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-  fill(colorGris[fila + 12]);// gris que cambia de color al clickearlo 3
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 3
- for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 674 + col * 52;
-    float y = 258;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 674 + col * 52;
-    float y = 328;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-}
-}
-// CUADRADO BLANCO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 674 + col * 52;
-    float y = 48;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 674 + col * 52;
-    float y = -22;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 674 + col * 52;
-    float y = 188;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO BLANCO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 2; col++) {
-    float x = 674 + col * 52;
-    float y = 118;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(255);   // blanco
-    rect(0, 0, 27, 27);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO  linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 750 + col * 52;
-    float y = 58;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 750 + col * 52;
-    float y = -14;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADO NEGRO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 750 + col * 52;
-    float y = 126;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 750 + col * 52;
-    float y = 196;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 750 + col * 52;
-    float y = 272;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-//CUADRADITO NEGRO linea 3
-for (int fila = 0; fila < 1; fila++) {
-  for (int col = 0; col < 1; col++) {
-    float x = 750 + col * 52;
-    float y = 342;
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(45));
-    fill(0);   // negro
-    rect(0, 0, 60, 60);
-    popMatrix();
-  }
-}
-}
-//al clickear cualquier cuadrado gris
+//cada vez que hago clic en la parte derecha (donde esta el dibujo) los colores de los cuadrados blancos, grises y negros cambian por colores aleatorios, o sea si hago clic sobre la imagen del lado izquierdo, no pasa nada (agregué if mouseX > 400 porque me di cuenta que antes si tocabas en la imagen tambien cambiaba de color y no queria eso).
 void mousePressed() {
-  int indice = 0;
-  for (int fila = 0; fila < 6; fila++) {
-    float x = 500;
-    float y = -10 + fila * 70;
-    if (estoySobre(x, y)) {
-      cambiarColor(indice);
-    }
-    indice++;
-  }
-  for (int fila = 0; fila < 6; fila++) {
-    float x = 600;
-    float y = -10 + fila * 70;
-    if (estoySobre(x, y)) {
-      cambiarColor(indice);
-    }
-    indice++;
-  }
-  for (int fila = 0; fila < 6; fila++) {
-    float x = 700;
-    float y = -10 + fila * 70;
-    if (estoySobre(x, y)) {
-      cambiarColor(indice);
-    }
-    indice++;
+  if (mouseX > 400) {
+    blanco = color(random(255), random(255), random(255));
+    gris = color(random(255), random(255), random(255));
+    negro = color(random(255), random(255), random(255));
   }
 }
+
+// use este void keyPressed para que al presionar la letra R ya sea mayus o minusc se reinicie la interaccion y vuelva a su estado normal (gris, blanco y negro)
 void keyPressed() {
   if (key == 'r' || key == 'R') {
-    for (int i = 0; i < 18; i++) {
-      colorGris[i] = color(200);
-    }
+    blanco = color(255);
+    gris = color(200);
+    negro = color(0);
   }
-}
-//Cambio d color
-void cambiarColor(int indice) {
-  colorGris[indice] = color(
-    random(255),
-    random(255),
-    random(255)
-  );
-}
-boolean estoySobre(float x, float y) {
-  return dist(mouseX, mouseY, x, y) < 35;
 }
